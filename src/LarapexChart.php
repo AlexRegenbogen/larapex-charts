@@ -64,7 +64,7 @@ class LarapexChart
     public function __construct()
     {
         $this->id = substr(str_shuffle(str_repeat($x = $this->chartLetters, (int) ceil(25 / strlen($x)))), 1, 25);
-        $this->horizontal = json_encode(['horizontal' => false]);
+        $this->horizontal = json_encode(['horizontal' => false, 'isFunnel' => false]);
         $this->colors = json_encode(config('larapex-charts.colors'));
         $this->markers = json_encode(['show' => false]);
         $this->toolbar = json_encode(['show' => false]);
@@ -73,6 +73,11 @@ class LarapexChart
         $this->sparkline = json_encode(['enabled' => false]);
         $this->fontFamily = config('larapex-charts.font_family');
         $this->foreColor = config('larapex-charts.font_color');
+    }
+
+    public function funnelChart() :FunnelChart
+    {
+        return new FunnelChart();
     }
 
     /*
